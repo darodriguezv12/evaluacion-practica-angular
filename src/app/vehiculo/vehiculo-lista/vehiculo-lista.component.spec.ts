@@ -1,6 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { VehiculoListaComponent } from './vehiculo-lista.component';
+import { HttpClientModule } from '@angular/common/http';
+import { VehiculoService } from '../vehiculo.service';
 
 describe('VehiculoListaComponent', () => {
   let component: VehiculoListaComponent;
@@ -8,7 +10,9 @@ describe('VehiculoListaComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [VehiculoListaComponent],
+      providers: [VehiculoService],
     }).compileComponents();
   }));
 
@@ -18,7 +22,7 @@ describe('VehiculoListaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('El componente debería ser creado', () => {
     expect(component).toBeTruthy();
   });
 });

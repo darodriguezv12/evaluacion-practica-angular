@@ -1,3 +1,44 @@
-<p>
-  vehiculo-lista works!
-</p>
+<div class="container-fluid">
+  <h2>Mi evaluacion angular - David Armando Rodríguez Varón</h2>
+  <img src="assets/portada.png" alt="Portada" class="img-fluid my-3" />
+  <div class="col-6">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="h4 text-white bg-dark">#</th>
+          <th class="h4 text-white bg-dark">Marca</th>
+          <th class="h4 text-white bg-dark">Línea</th>
+          <th class="h4 text-white bg-dark">Modelo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehiculo of vehiculos">
+          <td>
+            <dd>
+              <span class="fw-bold">{{ vehiculo.id }}</span>
+            </dd>
+          </td>
+          <td>
+            <dd>{{ vehiculo.marca }}</dd>
+          </td>
+          <td>
+            <dd>{{ vehiculo.linea }}</dd>
+          </td>
+          <td>
+            <dd>{{ vehiculo.modelo }}</dd>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <div *ngFor="let total of totalVehiculosPorMarca">
+      <span>Total {{ total.marca }}: {{ total.cantidad }}</span>
+    </div>
+    <div class="my-3">
+      <span id="footer" class="d-block text-center"
+        >Evaluacion angular - David Armando Rodríguez Varón</span
+      >
+    </div>
+  </div>
+</div>

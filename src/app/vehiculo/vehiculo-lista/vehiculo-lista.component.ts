@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Vehiculo } from '../vehiculo';
+import { VehiculoService } from '../vehiculo.service';
 
 @Component({
   selector: 'app-vehiculo-lista',
@@ -7,7 +9,30 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class VehiculoListaComponent implements OnInit {
-  constructor() {}
+  vehiculos: Array<Vehiculo> = [];
+  totalVehiculosPorMarca: Array<{ marca: string; cantidad: number }> = [];
 
-  ngOnInit() {}
+  constructor(private vehiculoService: VehiculoService) {}
+
+  ngOnInit() {
+    this.vehiculoService.getVehiculos().subscribe((vehiculos) => {
+      this.vehiculos = vehiculos;
+      this.definirTotalVehiculosPorMarca();
+    });
+  }
+
+  definirTotalVehiculosPorMarca() {
+    this.vehiculos.forEach((vehiculo) => {
+      const marca = vehiculo.marca;
+      const vehiculoExistente = this.totalVehiculosPorMarca.find(
+        (v) => v.marca === marca
+      );
+
+      if (vehiculoExistente) {
+        vehiculoExistente.cantidad++;
+      } else {
+        this.totalVehiculosPorMarca.push({ marca, cantidad: 1 });
+      }
+    });
+  }
 }
